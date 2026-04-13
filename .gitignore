@@ -1,0 +1,8 @@
+venv/
+data/raw/
+data/processed/
+__pycache__/
+*.pyc
+*.pth
+.env
+experiments/*/checkpoints/
