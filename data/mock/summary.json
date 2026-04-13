@@ -1,0 +1,64 @@
+{
+  "vaihingen": {
+    "splits": {
+      "train": 20,
+      "val": 5,
+      "test": 5
+    },
+    "class_distribution": {
+      "impervious_surface": 0.0693,
+      "building": 0.103,
+      "low_vegetation": 0.0722,
+      "tree": 0.2287,
+      "car": 0.0028,
+      "background": 0.524
+    },
+    "num_classes": 6,
+    "image_size": [
+      512,
+      512
+    ]
+  },
+  "potsdam": {
+    "splits": {
+      "train": 20,
+      "val": 5,
+      "test": 5
+    },
+    "class_distribution": {
+      "impervious_surface": 0.0623,
+      "building": 0.1057,
+      "low_vegetation": 0.0637,
+      "tree": 0.242,
+      "car": 0.0027,
+      "background": 0.5236
+    },
+    "num_classes": 6,
+    "image_size": [
+      512,
+      512
+    ]
+  },
+  "loveda": {
+    "splits": {
+      "train": 20,
+      "val": 5,
+      "test": 5
+    },
+    "class_distribution": {
+      "background": 0.366,
+      "building": 0.0367,
+      "road": 0.0494,
+      "water": 0.0237,
+      "barren": 0.0543,
+      "forest": 0.1893,
+      "agriculture": 0.2805
+    },
+    "num_classes": 7,
+    "image_size": [
+      512,
+      512
+    ],
+    "domain": "urban"
+  }
+}
