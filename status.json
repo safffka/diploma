@@ -1,0 +1,17 @@
+{
+  "wave1": {"mock_data": "pending", "eda": "pending"},
+  "wave2": {"preprocessor": "pending", "augmentation": "pending"},
+  "wave3": {"dataset_class": "pending", "metrics": "pending"},
+  "wave4": {
+    "blocks": "pending",
+    "fcn": "pending",
+    "unet": "pending",
+    "deeplab": "pending",
+    "attention": "pending",
+    "segformer": "pending"
+  },
+  "wave5": {"losses": "pending", "trainer": "pending", "train_script": "pending"},
+  "wave6": {"tests": "pending"},
+  "wave7": {"colab_notebook": "pending"},
+  "wave8": {"thesis": "pending"}
+}
