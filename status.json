@@ -12,6 +12,6 @@
   },
   "wave5": {"losses": "pending", "trainer": "pending", "train_script": "pending"},
   "wave6": {"tests": "pending"},
-  "wave7": {"colab_notebook": "pending"},
+  "wave7": {"colab_notebook": "done"},
   "wave8": {"thesis": "pending"}
 }

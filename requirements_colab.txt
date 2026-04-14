@@ -1,0 +1,11 @@
+torch>=2.2.0
+torchvision>=0.17.0
+albumentations
+tqdm
+thop
+scikit-learn
+matplotlib
+scipy
+pyyaml
+tensorboard
+numpy<2
