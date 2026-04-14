@@ -1,0 +1,63 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /root/diploma/venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /root/diploma
+collecting ... collected 43 items
+
+tests/integration/test_training.py::test_single_optimizer_step PASSED    [  2%]
+tests/integration/test_training.py::test_trainer_save_load_checkpoint PASSED [  4%]
+tests/integration/test_training.py::test_overfit_tiny PASSED             [  6%]
+tests/unit/test_blocks.py::test_conv_bn_relu_shape PASSED                [  9%]
+tests/unit/test_blocks.py::test_attention_gate_shape PASSED              [ 11%]
+tests/unit/test_blocks.py::test_attention_gate_weights_range PASSED      [ 13%]
+tests/unit/test_blocks.py::test_mhsa_shape_preserved PASSED              [ 16%]
+tests/unit/test_blocks.py::test_mhsa_no_nan PASSED                       [ 18%]
+tests/unit/test_dataset.py::test_constants_defined PASSED                [ 20%]
+tests/unit/test_dataset.py::test_colormap_has_all_classes PASSED         [ 23%]
+tests/unit/test_dataset.py::test_isprs_dataset_len PASSED                [ 25%]
+tests/unit/test_dataset.py::test_isprs_getitem_shapes PASSED             [ 27%]
+tests/unit/test_dataset.py::test_mask_values_in_range PASSED             [ 30%]
+tests/unit/test_dataset.py::test_class_weights_shape_and_positive PASSED [ 32%]
+tests/unit/test_dataset.py::test_get_dataset_info_keys PASSED            [ 34%]
+tests/unit/test_dataset.py::test_rgb_to_mask_roundtrip PASSED            [ 37%]
+tests/unit/test_losses.py::test_dice_perfect PASSED                      [ 39%]
+tests/unit/test_losses.py::test_dice_range PASSED                        [ 41%]
+tests/unit/test_losses.py::test_combined_positive PASSED                 [ 44%]
+tests/unit/test_losses.py::test_combined_backward PASSED                 [ 46%]
+tests/unit/test_losses.py::test_combined_with_class_weights PASSED       [ 48%]
+tests/unit/test_metrics.py::test_miou_perfect PASSED                     [ 51%]
+tests/unit/test_metrics.py::test_miou_range PASSED                       [ 53%]
+tests/unit/test_metrics.py::test_miou_zero PASSED                        [ 55%]
+tests/unit/test_metrics.py::test_boundary_iou_range PASSED               [ 58%]
+tests/unit/test_metrics.py::test_boundary_iou_perfect PASSED             [ 60%]
+tests/unit/test_metrics.py::test_tracker_accumulate PASSED               [ 62%]
+tests/unit/test_metrics.py::test_flops_params_keys PASSED                [ 65%]
+tests/unit/test_models.py::test_model_output_shape[fcn] PASSED           [ 67%]
+tests/unit/test_models.py::test_model_output_shape[unet] PASSED          [ 69%]
+tests/unit/test_models.py::test_model_output_shape[deeplab] PASSED       [ 72%]
+tests/unit/test_models.py::test_model_output_shape[attention] PASSED     [ 74%]
+tests/unit/test_models.py::test_model_output_shape[segformer] PASSED     [ 76%]
+tests/unit/test_models.py::test_model_no_nan[fcn] PASSED                 [ 79%]
+tests/unit/test_models.py::test_model_no_nan[unet] PASSED                [ 81%]
+tests/unit/test_models.py::test_model_no_nan[deeplab] PASSED             [ 83%]
+tests/unit/test_models.py::test_model_no_nan[attention] PASSED           [ 86%]
+tests/unit/test_models.py::test_model_no_nan[segformer] PASSED           [ 88%]
+tests/unit/test_models.py::test_model_gradient_flow[fcn] PASSED          [ 90%]
+tests/unit/test_models.py::test_model_gradient_flow[unet] PASSED         [ 93%]
+tests/unit/test_models.py::test_model_gradient_flow[deeplab] PASSED      [ 95%]
+tests/unit/test_models.py::test_model_gradient_flow[attention] PASSED    [ 97%]
+tests/unit/test_models.py::test_model_gradient_flow[segformer] PASSED    [100%]
+
+=============================== warnings summary ===============================
+tests/unit/test_metrics.py::test_flops_params_keys
+tests/unit/test_metrics.py::test_flops_params_keys
+  /root/diploma/venv/lib/python3.12/site-packages/thop/profile.py:12: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(torch.__version__) < LooseVersion("1.0.0"):
+
+tests/unit/test_metrics.py::test_flops_params_keys
+tests/unit/test_metrics.py::test_flops_params_keys
+  /root/diploma/venv/lib/python3.12/site-packages/thop/profile.py:68: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(torch.__version__) >= LooseVersion("1.1.0"):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 43 passed, 4 warnings in 43.48s ========================
