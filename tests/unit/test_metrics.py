@@ -5,8 +5,8 @@ import numpy as np
 import pytest
 import torch
 
-from code.data.dataset import ISPRS_NUM_CLASSES
-from code.evaluation.metrics import (
+from src.data.dataset import ISPRS_NUM_CLASSES
+from src.evaluation.metrics import (
     MetricsTracker,
     compute_boundary_iou,
     compute_flops_params,

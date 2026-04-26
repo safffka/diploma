@@ -6,11 +6,11 @@ import torch
 from torch.optim import AdamW
 from torch.utils.data import DataLoader, TensorDataset
 
-from code.data.dataset import IN_CHANNELS, ISPRS_NUM_CLASSES
-from code.evaluation.metrics import compute_miou
-from code.models import get_model
-from code.training.losses import CombinedLoss
-from code.training.trainer import Trainer
+from src.data.dataset import IN_CHANNELS, ISPRS_NUM_CLASSES
+from src.evaluation.metrics import compute_miou
+from src.models import get_model
+from src.training.losses import CombinedLoss
+from src.training.trainer import Trainer
 from tests.conftest import SANDBOX_TORCH_BAD, SKIP_REASON_SIGFPE
 
 

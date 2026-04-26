@@ -19,7 +19,7 @@ try:
 except Exception:  # pragma: no cover
     SummaryWriter = None  # type: ignore
 
-from code.evaluation.metrics import MetricsTracker
+from src.evaluation.metrics import MetricsTracker
 
 
 class Trainer:

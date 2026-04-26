@@ -13,8 +13,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from code.data.dataset import IN_CHANNELS, ISPRS_NUM_CLASSES  # noqa: E402
-from code.models import get_model  # noqa: E402
+from src.data.dataset import IN_CHANNELS, ISPRS_NUM_CLASSES  # noqa: E402
+from src.models import get_model  # noqa: E402
 
 
 SANDBOX_TORCH_BAD = torch.__version__.startswith("2.11")

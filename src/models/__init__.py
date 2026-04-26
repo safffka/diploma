@@ -3,12 +3,12 @@ from __future__ import annotations
 
 import torch.nn as nn
 
-from code.data.dataset import IN_CHANNELS, ISPRS_NUM_CLASSES
-from code.models.attention_unet import AttentionUNet
-from code.models.deeplab import DeepLabV3Plus
-from code.models.fcn import FCN
-from code.models.segformer import SegFormer
-from code.models.unet import UNet
+from src.data.dataset import IN_CHANNELS, ISPRS_NUM_CLASSES
+from src.models.attention_unet import AttentionUNet
+from src.models.deeplab import DeepLabV3Plus
+from src.models.fcn import FCN
+from src.models.segformer import SegFormer
+from src.models.unet import UNet
 
 __all__ = [
     "get_model",

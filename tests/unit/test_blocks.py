@@ -4,7 +4,7 @@ from __future__ import annotations
 import pytest
 import torch
 
-from code.models.blocks import (
+from src.models.blocks import (
     AttentionGate,
     ConvBNReLU,
     MultiHeadSelfAttention,

@@ -5,8 +5,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from code.data.dataset import IN_CHANNELS, ISPRS_NUM_CLASSES
-from code.models.blocks import ConvBNReLU
+from src.data.dataset import IN_CHANNELS, ISPRS_NUM_CLASSES
+from src.models.blocks import ConvBNReLU
 
 
 def _vgg_block(in_ch: int, out_ch: int, n_convs: int = 2) -> nn.Sequential:

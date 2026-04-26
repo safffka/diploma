@@ -5,7 +5,7 @@ import pytest
 import torch
 import torch.nn.functional as F
 
-from code.data.dataset import IN_CHANNELS, ISPRS_NUM_CLASSES
+from src.data.dataset import IN_CHANNELS, ISPRS_NUM_CLASSES
 from tests.conftest import SANDBOX_TORCH_BAD, SKIP_REASON_SIGFPE
 
 

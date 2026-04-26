@@ -15,7 +15,7 @@ import torch
 from PIL import Image
 from torch.utils.data import DataLoader, Dataset
 
-from code.data.augmentation import get_transforms, load_stats
+from src.data.augmentation import get_transforms, load_stats
 
 # ---------------------------------------------------------------------------
 # Constants

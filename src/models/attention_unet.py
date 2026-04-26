@@ -5,9 +5,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from code.data.dataset import IN_CHANNELS, ISPRS_NUM_CLASSES
-from code.models.blocks import AttentionGate, ConvBNReLU, MultiHeadSelfAttention
-from code.models.unet import EncoderBlock
+from src.data.dataset import IN_CHANNELS, ISPRS_NUM_CLASSES
+from src.models.blocks import AttentionGate, ConvBNReLU, MultiHeadSelfAttention
+from src.models.unet import EncoderBlock
 
 
 class AttentionDecoderBlock(nn.Module):

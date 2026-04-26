@@ -8,9 +8,9 @@ from typing import Dict, List
 
 import torch
 
-from code.data.dataset import get_dataloader, get_dataset_info
-from code.evaluation.metrics import MetricsTracker, compute_flops_params
-from code.models import get_model
+from src.data.dataset import get_dataloader, get_dataset_info
+from src.evaluation.metrics import MetricsTracker, compute_flops_params
+from src.models import get_model
 
 
 def evaluate_dataset(

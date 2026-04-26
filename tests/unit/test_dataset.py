@@ -5,7 +5,7 @@ import numpy as np
 import pytest
 import torch
 
-from code.data.dataset import (
+from src.data.dataset import (
     IN_CHANNELS,
     ISPRS_CLASSES,
     ISPRS_COLORMAP,

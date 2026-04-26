@@ -14,9 +14,9 @@ import torch
 from torch.optim import AdamW
 from torch.optim.lr_scheduler import CosineAnnealingLR
 
-from code.data.dataset import get_dataloader, get_dataset_info
-from code.training.losses import CombinedLoss
-from code.training.trainer import Trainer
+from src.data.dataset import get_dataloader, get_dataset_info
+from src.training.losses import CombinedLoss
+from src.training.trainer import Trainer
 
 
 def parse_args() -> argparse.Namespace:
@@ -58,7 +58,7 @@ def main() -> None:
     class_weights = torch.tensor(info["class_weights"], dtype=torch.float32)
 
     # Model is imported here at runtime (not at file-write time).
-    from code.models import get_model
+    from src.models import get_model
 
     model = get_model(args.model, num_classes=num_classes)
 

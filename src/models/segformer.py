@@ -11,7 +11,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from code.data.dataset import IN_CHANNELS, ISPRS_NUM_CLASSES
+from src.data.dataset import IN_CHANNELS, ISPRS_NUM_CLASSES
 
 
 class OverlapPatchEmbed(nn.Module):

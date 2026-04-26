@@ -4,8 +4,8 @@ from __future__ import annotations
 import pytest
 import torch
 
-from code.data.dataset import ISPRS_NUM_CLASSES
-from code.training.losses import CombinedLoss, DiceLoss
+from src.data.dataset import ISPRS_NUM_CLASSES
+from src.training.losses import CombinedLoss, DiceLoss
 
 
 def _perfect_logits(target: torch.Tensor, num_classes: int) -> torch.Tensor:
