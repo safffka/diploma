@@ -59,7 +59,7 @@ class MultiHeadSelfAttention(nn.Module):
         tokens     = x.flatten(2).transpose(1, 2)
         out, _     = self.mha(tokens, tokens, tokens)
         out        = self.norm(out + tokens)
-        return out.transpose(1, 2).reshape(B, C, H, W)
+        return out.transpose(1, 2).contiguous().reshape(B, C, H, W)
 
 
 class AttentionUNetPretrained(nn.Module):
