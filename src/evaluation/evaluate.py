@@ -47,6 +47,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--save_dir", type=str, required=True)
     p.add_argument("--batch_size", type=int, default=2)
     p.add_argument("--num_workers", type=int, default=2)
+    p.add_argument("--device", type=str, default="cpu", help="cpu | cuda | mps")
     return p.parse_args()
 
 
@@ -56,7 +57,7 @@ def main() -> None:
     save_dir.mkdir(parents=True, exist_ok=True)
     results_dir = Path(args.results_dir)
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device(args.device)
 
     info = get_dataset_info(args.dataset)
     num_classes = int(info["num_classes"])
