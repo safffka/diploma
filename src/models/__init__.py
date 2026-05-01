@@ -44,3 +44,19 @@ def get_model(
         f"unknown model name '{name}'. Expected one of: "
         "'fcn', 'unet', 'deeplab', 'attention', 'segformer'."
     )
+
+from src.models.unet_pretrained import UNetPretrained
+from src.models.attention_unet_pretrained import AttentionUNetPretrained
+
+_PRETRAINED_REGISTRY = {
+    "unet_pt":      lambda nc, ic: UNetPretrained(num_classes=nc, pretrained=True),
+    "attention_pt": lambda nc, ic: AttentionUNetPretrained(num_classes=nc, pretrained=True),
+}
+
+_ORIGINAL_GET_MODEL = get_model
+
+def get_model(name: str, num_classes: int = ISPRS_NUM_CLASSES,
+              in_channels: int = IN_CHANNELS) -> nn.Module:
+    if name in _PRETRAINED_REGISTRY:
+        return _PRETRAINED_REGISTRY[name](num_classes, in_channels)
+    return _ORIGINAL_GET_MODEL(name, num_classes, in_channels)
