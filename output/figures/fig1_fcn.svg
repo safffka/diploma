@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 280" font-family="'Segoe UI',Arial,sans-serif">
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#555"/></marker>
+</defs>
+
+<!-- Title -->
+<text x="340" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">FCN — Fully Convolutional Network</text>
+<text x="340" y="39" text-anchor="middle" font-size="12" fill="#666">3.7M параметров · 73.1 GFLOPs · mIoU 53.2%</text>
+
+<!-- ═══ ROW 1: Input → Block1–5 ═══ -->
+
+<!-- Input (gray) -->
+<rect x="10" y="60" width="52" height="68" rx="6" fill="#EEEEEC" stroke="#888780" stroke-width="1.5"/>
+<text x="36" y="90" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">Вход</text>
+<text x="36" y="104" text-anchor="middle" font-size="8" fill="#444">3×512×512</text>
+
+<!-- Arrow Input→B1 -->
+<line x1="62" y1="94" x2="78" y2="94" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Block 1 (teal) -->
+<rect x="80" y="60" width="86" height="68" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="123" y="77" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">VGG Block 1</text>
+<text x="123" y="89" text-anchor="middle" font-size="8" fill="#444">Conv×2</text>
+<text x="123" y="101" text-anchor="middle" font-size="8" fill="#444">32ch</text>
+<text x="123" y="113" text-anchor="middle" font-size="8" fill="#444">256×256</text>
+
+<!-- Arrow + MaxPool B1→B2 -->
+<line x1="166" y1="94" x2="182" y2="94" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+<text x="174" y="82" text-anchor="middle" font-size="6" fill="#888">MaxPool</text>
+<text x="174" y="89" text-anchor="middle" font-size="6" fill="#888">/2</text>
+
+<!-- Block 2 (teal) -->
+<rect x="184" y="60" width="86" height="68" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="227" y="77" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">VGG Block 2</text>
+<text x="227" y="89" text-anchor="middle" font-size="8" fill="#444">Conv×2</text>
+<text x="227" y="101" text-anchor="middle" font-size="8" fill="#444">64ch</text>
+<text x="227" y="113" text-anchor="middle" font-size="8" fill="#444">128×128</text>
+
+<!-- Arrow + MaxPool B2→B3 -->
+<line x1="270" y1="94" x2="286" y2="94" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+<text x="278" y="82" text-anchor="middle" font-size="6" fill="#888">MaxPool</text>
+<text x="278" y="89" text-anchor="middle" font-size="6" fill="#888">/2</text>
+
+<!-- Block 3 (teal) -->
+<rect x="288" y="60" width="86" height="68" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="331" y="77" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">VGG Block 3</text>
+<text x="331" y="89" text-anchor="middle" font-size="8" fill="#444">Conv×3</text>
+<text x="331" y="101" text-anchor="middle" font-size="8" fill="#444">128ch</text>
+<text x="331" y="113" text-anchor="middle" font-size="8" fill="#444">64×64</text>
+
+<!-- Arrow + MaxPool B3→B4 -->
+<line x1="374" y1="94" x2="390" y2="94" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+<text x="382" y="82" text-anchor="middle" font-size="6" fill="#888">MaxPool</text>
+<text x="382" y="89" text-anchor="middle" font-size="6" fill="#888">/2</text>
+
+<!-- Block 4 (teal) -->
+<rect x="392" y="60" width="86" height="68" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="435" y="77" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">VGG Block 4</text>
+<text x="435" y="89" text-anchor="middle" font-size="8" fill="#444">Conv×3</text>
+<text x="435" y="101" text-anchor="middle" font-size="8" fill="#444">256ch</text>
+<text x="435" y="113" text-anchor="middle" font-size="8" fill="#444">32×32</text>
+
+<!-- Arrow + MaxPool B4→B5 -->
+<line x1="478" y1="94" x2="494" y2="94" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+<text x="486" y="82" text-anchor="middle" font-size="6" fill="#888">MaxPool</text>
+<text x="486" y="89" text-anchor="middle" font-size="6" fill="#888">/2</text>
+
+<!-- Block 5 (teal) -->
+<rect x="496" y="60" width="86" height="68" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="539" y="77" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">VGG Block 5</text>
+<text x="539" y="89" text-anchor="middle" font-size="8" fill="#444">Conv×3</text>
+<text x="539" y="101" text-anchor="middle" font-size="8" fill="#444">256ch</text>
+<text x="539" y="113" text-anchor="middle" font-size="8" fill="#444">16×16</text>
+
+<!-- ═══ TURN DOWN + ROW 2 ═══ -->
+
+<!-- Turn-down path from Block5 to Conv1x1 -->
+<path d="M539,128 V146 H300 V162" stroke="#555" stroke-width="1.2" fill="none" marker-end="url(#ah)"/>
+
+<!-- Conv 1×1 (purple) -->
+<rect x="245" y="164" width="110" height="50" rx="6" fill="#ECEAF5" stroke="#534AB7" stroke-width="1.5"/>
+<text x="300" y="184" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">Conv 1×1</text>
+<text x="300" y="198" text-anchor="middle" font-size="8" fill="#444">256→6 классов</text>
+
+<!-- Arrow Conv→Upsample -->
+<line x1="355" y1="189" x2="371" y2="189" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Bilinear Upsample (blue) -->
+<rect x="373" y="164" width="130" height="50" rx="6" fill="#DFEDF8" stroke="#378ADD" stroke-width="1.5"/>
+<text x="438" y="181" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">Bilinear Upsample</text>
+<text x="438" y="193" text-anchor="middle" font-size="8" fill="#444">×16</text>
+<text x="438" y="205" text-anchor="middle" font-size="8" fill="#444">16×16 → 512×512</text>
+
+<!-- Arrow Upsample→Output -->
+<line x1="503" y1="189" x2="519" y2="189" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Output (green) -->
+<rect x="521" y="164" width="105" height="50" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="573" y="185" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">Маска</text>
+<text x="573" y="199" text-anchor="middle" font-size="8" fill="#444">6×512×512</text>
+
+<!-- ═══ NOTE BOX ═══ -->
+<rect x="15" y="232" width="650" height="34" rx="5" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="5,3"/>
+<text x="340" y="253" text-anchor="middle" font-size="9" fill="#666">Нет skip-соединений · Быстрый инференс · Низкое качество границ</text>
+
+</svg>

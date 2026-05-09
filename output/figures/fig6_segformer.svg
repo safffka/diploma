@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 530" font-family="'Segoe UI',Arial,sans-serif">
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#555"/></marker>
+</defs>
+
+<!-- Title -->
+<text x="340" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">SegFormer (Mix Transformer)</text>
+<text x="340" y="39" text-anchor="middle" font-size="12" fill="#666">2.3M параметров · 2.9 GFLOPs · mIoU 45.9% · наиболее эффективный</text>
+
+<!-- ═══ LEFT ZONE: MiT Encoder ═══ -->
+<rect x="5" y="52" width="340" height="410" rx="6" fill="none" stroke="#1D9E75" stroke-width="1" stroke-dasharray="5,3"/>
+<text x="175" y="68" text-anchor="middle" font-size="10" font-weight="bold" fill="#1D9E75">Mix Transformer Encoder (MiT)</text>
+
+<!-- Stage 1 -->
+<rect x="14" y="80" width="322" height="66" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="175" y="96" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">Stage 1: OverlapPatchEmbed (Conv 7×7, stride=4)</text>
+<text x="175" y="110" text-anchor="middle" font-size="8" fill="#444">32ch · 128×128</text>
+<text x="175" y="124" text-anchor="middle" font-size="8" fill="#444">MiTBlock×2: EfficientSA(sr_ratio=8) + MixFFN</text>
+
+<line x1="175" y1="146" x2="175" y2="156" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Stage 2 -->
+<rect x="14" y="160" width="322" height="66" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="175" y="176" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">Stage 2: OverlapPatchEmbed (Conv 3×3, stride=2)</text>
+<text x="175" y="190" text-anchor="middle" font-size="8" fill="#444">64ch · 64×64</text>
+<text x="175" y="204" text-anchor="middle" font-size="8" fill="#444">MiTBlock×2: EfficientSA(sr_ratio=4) + MixFFN</text>
+
+<line x1="175" y1="226" x2="175" y2="236" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Stage 3 -->
+<rect x="14" y="240" width="322" height="66" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="175" y="256" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">Stage 3: OverlapPatchEmbed (Conv 3×3, stride=2)</text>
+<text x="175" y="270" text-anchor="middle" font-size="8" fill="#444">128ch · 32×32</text>
+<text x="175" y="284" text-anchor="middle" font-size="8" fill="#444">MiTBlock×2: EfficientSA(sr_ratio=2) + MixFFN</text>
+
+<line x1="175" y1="306" x2="175" y2="316" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Stage 4 -->
+<rect x="14" y="320" width="322" height="66" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="175" y="336" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">Stage 4: OverlapPatchEmbed (Conv 3×3, stride=2)</text>
+<text x="175" y="350" text-anchor="middle" font-size="8" fill="#444">192ch · 16×16</text>
+<text x="175" y="364" text-anchor="middle" font-size="8" fill="#444">MiTBlock×2: EfficientSA(sr_ratio=1) + MixFFN</text>
+
+<!-- EfficientSA detail (amber) -->
+<rect x="14" y="400" width="230" height="52" rx="5" fill="#FDF2DB" stroke="#EF9F27" stroke-width="1.2"/>
+<text x="129" y="416" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">EfficientSA: K,V редуцируются</text>
+<text x="129" y="430" text-anchor="middle" font-size="8" fill="#444">в sr_ratio² раз</text>
+<text x="129" y="444" text-anchor="middle" font-size="8" fill="#444">O(N²/r²) вместо O(N²)</text>
+
+<!-- ═══ RIGHT ZONE: MLP Decoder ═══ -->
+<rect x="358" y="52" width="315" height="410" rx="6" fill="none" stroke="#534AB7" stroke-width="1" stroke-dasharray="5,3"/>
+<text x="515" y="68" text-anchor="middle" font-size="10" font-weight="bold" fill="#534AB7">MLP Decoder</text>
+
+<!-- 4 arrows from stages to LinearProj -->
+<line x1="336" y1="113" x2="370" y2="90" stroke="#555" stroke-width="1" marker-end="url(#ah)"/>
+<line x1="336" y1="193" x2="370" y2="96" stroke="#555" stroke-width="1" marker-end="url(#ah)"/>
+<line x1="336" y1="273" x2="370" y2="102" stroke="#555" stroke-width="1" marker-end="url(#ah)"/>
+<line x1="336" y1="353" x2="370" y2="108" stroke="#555" stroke-width="1" marker-end="url(#ah)"/>
+
+<!-- LinearProj (purple) -->
+<rect x="372" y="80" width="293" height="38" rx="5" fill="#ECEAF5" stroke="#534AB7" stroke-width="1.5"/>
+<text x="518" y="96" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">Linear proj: 32/64/128/192 → 128ch</text>
+<text x="518" y="109" text-anchor="middle" font-size="7.5" fill="#444">каждый уровень</text>
+
+<line x1="518" y1="118" x2="518" y2="128" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Upsample (purple) -->
+<rect x="372" y="130" width="293" height="30" rx="5" fill="#ECEAF5" stroke="#534AB7" stroke-width="1.5"/>
+<text x="518" y="149" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">Bilinear upsample все → 128×128</text>
+
+<line x1="518" y1="160" x2="518" y2="170" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Concat (purple) -->
+<rect x="372" y="172" width="293" height="30" rx="5" fill="#ECEAF5" stroke="#534AB7" stroke-width="1.5"/>
+<text x="518" y="191" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">Concat(4×128 = 512ch)</text>
+
+<line x1="518" y1="202" x2="518" y2="212" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Conv fusion (purple) -->
+<rect x="372" y="214" width="293" height="30" rx="5" fill="#ECEAF5" stroke="#534AB7" stroke-width="1.5"/>
+<text x="518" y="233" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">Conv 1×1 → 128ch (слияние)</text>
+
+<line x1="518" y1="244" x2="518" y2="254" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Head (purple) -->
+<rect x="372" y="256" width="293" height="30" rx="5" fill="#ECEAF5" stroke="#534AB7" stroke-width="1.5"/>
+<text x="518" y="275" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">Conv 1×1 → 6 классов</text>
+
+<line x1="518" y1="286" x2="518" y2="296" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Bilinear ×4 (blue) -->
+<rect x="372" y="298" width="293" height="30" rx="5" fill="#DFEDF8" stroke="#378ADD" stroke-width="1.5"/>
+<text x="518" y="317" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">Bilinear ×4: 128×128 → 512×512</text>
+
+<line x1="518" y1="328" x2="518" y2="338" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Output (green) -->
+<rect x="372" y="340" width="293" height="30" rx="5" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="518" y="359" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">Маска 6×512×512</text>
+
+<!-- ═══ NOTE ═══ -->
+<rect x="8" y="475" width="664" height="44" rx="5" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="5,3"/>
+<text x="340" y="493" text-anchor="middle" font-size="8" fill="#666">Нет позиционного кодирования · EfficientSA снижает сложность attention</text>
+<text x="340" y="507" text-anchor="middle" font-size="8" fill="#666">MixFFN = Linear + DWConv3×3 + GELU + Linear</text>
+
+</svg>

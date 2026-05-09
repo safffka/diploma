@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 500" font-family="'Segoe UI',Arial,sans-serif">
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#555"/></marker>
+  <marker id="ahg" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#1D9E75"/></marker>
+</defs>
+
+<!-- Title -->
+<text x="340" y="20" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">Attention U-Net PT (ResNet50 ImageNet) ★ Лучший BIoU</text>
+<text x="340" y="37" text-anchor="middle" font-size="12" fill="#666">87.0M параметров · 83.4 GFLOPs · mIoU 61.4% · BIoU 34.7%</text>
+
+<!-- ═══ IMAGENET BADGE (dashed box around encoder) ═══ -->
+<rect x="8" y="52" width="212" height="310" rx="6" fill="none" stroke="#1D9E75" stroke-width="1" stroke-dasharray="5,3"/>
+<text x="114" y="65" text-anchor="middle" font-size="8" font-weight="bold" fill="#1D9E75">ImageNet pretrained</text>
+
+<!-- ═══ ENCODER (left — 5 levels) ═══ -->
+
+<!-- enc0 -->
+<rect x="15" y="72" width="198" height="48" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="114" y="88" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">enc0: Conv1+BN+ReLU ★</text>
+<text x="114" y="102" text-anchor="middle" font-size="7.5" fill="#444">pretrained · 64ch · 256×256</text>
+
+<line x1="114" y1="120" x2="114" y2="132" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- enc1 -->
+<rect x="15" y="134" width="198" height="48" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="114" y="152" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">enc1: layer1 (ResNet50)</text>
+<text x="114" y="166" text-anchor="middle" font-size="7.5" fill="#444">256ch · 128×128</text>
+
+<line x1="114" y1="182" x2="114" y2="194" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- enc2 -->
+<rect x="15" y="196" width="198" height="48" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="114" y="214" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">enc2: layer2 (ResNet50)</text>
+<text x="114" y="228" text-anchor="middle" font-size="7.5" fill="#444">512ch · 64×64</text>
+
+<line x1="114" y1="244" x2="114" y2="256" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- enc3 -->
+<rect x="15" y="258" width="198" height="48" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="114" y="276" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">enc3: layer3 (ResNet50)</text>
+<text x="114" y="290" text-anchor="middle" font-size="7.5" fill="#444">1024ch · 32×32</text>
+
+<line x1="114" y1="306" x2="114" y2="318" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- enc4 -->
+<rect x="15" y="320" width="198" height="48" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="114" y="338" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">enc4: layer4 (ResNet50)</text>
+<text x="114" y="352" text-anchor="middle" font-size="7.5" fill="#444">2048ch · 16×16</text>
+
+<!-- ═══ BOTTLENECK + MHSA ═══ -->
+
+<path d="M114,368 V382 H165" stroke="#555" stroke-width="1.2" fill="none" marker-end="url(#ah)"/>
+
+<rect x="167" y="392" width="346" height="55" rx="6" fill="#ECEAF5" stroke="#534AB7" stroke-width="1.5"/>
+<text x="340" y="410" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">Bottleneck</text>
+<text x="340" y="424" text-anchor="middle" font-size="7.5" fill="#444">ConvBNReLU(2048→1024) → MHSA(8) → ConvBNReLU</text>
+<text x="340" y="438" text-anchor="middle" font-size="7.5" fill="#444">1024ch · 16×16</text>
+
+<!-- MHSA amber badge -->
+<rect x="284" y="413" width="112" height="14" rx="3" fill="#FDF2DB" stroke="#EF9F27" stroke-width="0.8"/>
+<text x="340" y="423" text-anchor="middle" font-size="6.5" font-weight="bold" fill="#333">MHSA · 8 голов</text>
+
+<path d="M513,392 H566 V308" stroke="#555" stroke-width="1.2" fill="none" marker-end="url(#ah)"/>
+
+<!-- ═══ DECODER (right — 4 levels) ═══ -->
+
+<!-- dec4 -->
+<rect x="467" y="258" width="198" height="48" rx="6" fill="#F8E5DD" stroke="#D85A30" stroke-width="1.5"/>
+<text x="566" y="275" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">AttentionDecoderBlock 4</text>
+<text x="566" y="289" text-anchor="middle" font-size="7.5" fill="#444">512ch · 32×32</text>
+
+<line x1="566" y1="258" x2="566" y2="246" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- dec3 -->
+<rect x="467" y="196" width="198" height="48" rx="6" fill="#F8E5DD" stroke="#D85A30" stroke-width="1.5"/>
+<text x="566" y="213" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">AttentionDecoderBlock 3</text>
+<text x="566" y="227" text-anchor="middle" font-size="7.5" fill="#444">256ch · 64×64</text>
+
+<line x1="566" y1="196" x2="566" y2="184" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- dec2 -->
+<rect x="467" y="134" width="198" height="48" rx="6" fill="#F8E5DD" stroke="#D85A30" stroke-width="1.5"/>
+<text x="566" y="151" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">AttentionDecoderBlock 2</text>
+<text x="566" y="165" text-anchor="middle" font-size="7.5" fill="#444">128ch · 128×128</text>
+
+<line x1="566" y1="134" x2="566" y2="122" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- dec1 -->
+<rect x="467" y="72" width="198" height="48" rx="6" fill="#F8E5DD" stroke="#D85A30" stroke-width="1.5"/>
+<text x="566" y="89" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">AttentionDecoderBlock 1</text>
+<text x="566" y="103" text-anchor="middle" font-size="7.5" fill="#444">64ch · 256×256</text>
+
+<!-- up_final + Head + Output -->
+<path d="M566,72 V58 H540 V56" stroke="#555" stroke-width="1.2" fill="none" marker-end="url(#ah)"/>
+<rect x="485" y="14" width="98" height="40" rx="5" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="534" y="30" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#333">up_final ×2</text>
+<text x="534" y="43" text-anchor="middle" font-size="7.5" fill="#333">Conv 1×1→6</text>
+
+<line x1="583" y1="34" x2="596" y2="34" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<rect x="598" y="19" width="74" height="30" rx="5" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="635" y="38" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">6×512²</text>
+
+<!-- ═══ SKIP + ATTENTION GATES ═══ -->
+
+<!-- Skip enc0→dec1 + AG -->
+<line x1="213" y1="96" x2="313" y2="96" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="6,3" marker-end="url(#ahg)"/>
+<rect x="315" y="85" width="50" height="22" rx="4" fill="#FDF2DB" stroke="#EF9F27" stroke-width="1.2"/>
+<text x="340" y="100" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#333">AG</text>
+<line x1="365" y1="96" x2="467" y2="96" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="6,3" marker-end="url(#ahg)"/>
+
+<!-- Skip enc1→dec2 + AG -->
+<line x1="213" y1="158" x2="313" y2="158" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="6,3" marker-end="url(#ahg)"/>
+<rect x="315" y="147" width="50" height="22" rx="4" fill="#FDF2DB" stroke="#EF9F27" stroke-width="1.2"/>
+<text x="340" y="162" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#333">AG</text>
+<line x1="365" y1="158" x2="467" y2="158" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="6,3" marker-end="url(#ahg)"/>
+
+<!-- Skip enc2→dec3 + AG -->
+<line x1="213" y1="220" x2="313" y2="220" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="6,3" marker-end="url(#ahg)"/>
+<rect x="315" y="209" width="50" height="22" rx="4" fill="#FDF2DB" stroke="#EF9F27" stroke-width="1.2"/>
+<text x="340" y="224" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#333">AG</text>
+<line x1="365" y1="220" x2="467" y2="220" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="6,3" marker-end="url(#ahg)"/>
+
+<!-- Skip enc3→dec4 + AG -->
+<line x1="213" y1="282" x2="313" y2="282" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="6,3" marker-end="url(#ahg)"/>
+<rect x="315" y="271" width="50" height="22" rx="4" fill="#FDF2DB" stroke="#EF9F27" stroke-width="1.2"/>
+<text x="340" y="286" text-anchor="middle" font-size="7.5" font-weight="bold" fill="#333">AG</text>
+<line x1="365" y1="282" x2="467" y2="282" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="6,3" marker-end="url(#ahg)"/>
+
+<!-- Decoder label -->
+<text x="566" y="320" text-anchor="middle" font-size="7" fill="#D85A30" font-style="italic">Upsample → AG(skip) → concat → ConvBNReLU×2</text>
+
+<!-- AG formula -->
+<text x="340" y="490" text-anchor="middle" font-size="9" fill="#666" font-style="italic">α = σ(ψ(Wg·g + Wx·x))</text>
+
+</svg>

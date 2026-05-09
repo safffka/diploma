@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 420" font-family="'Segoe UI',Arial,sans-serif">
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#555"/></marker>
+  <marker id="ahg" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#1D9E75"/></marker>
+</defs>
+
+<!-- Title -->
+<text x="340" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">DeepLabV3+</text>
+<text x="340" y="39" text-anchor="middle" font-size="12" fill="#666">6.5M параметров · 33.2 GFLOPs · mIoU 45.9%</text>
+
+<!-- ═══ ZONE 1: ENCODER ═══ -->
+<rect x="8" y="52" width="195" height="300" rx="6" fill="none" stroke="#1D9E75" stroke-width="1" stroke-dasharray="5,3"/>
+<text x="105" y="67" text-anchor="middle" font-size="10" font-weight="bold" fill="#1D9E75">Энкодер (atrous)</text>
+
+<!-- Stem -->
+<rect x="16" y="78" width="179" height="45" rx="5" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="105" y="95" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">Stem / Conv×2, stride=2</text>
+<text x="105" y="109" text-anchor="middle" font-size="8" fill="#444">64ch · 256×256</text>
+
+<line x1="105" y1="123" x2="105" y2="136" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- L1 -->
+<rect x="16" y="138" width="179" height="45" rx="5" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="105" y="155" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">layer1 / ResBlock×2</text>
+<text x="105" y="169" text-anchor="middle" font-size="8" fill="#444">128ch · 128×128</text>
+
+<line x1="105" y1="183" x2="105" y2="196" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- L2 -->
+<rect x="16" y="198" width="179" height="45" rx="5" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="105" y="215" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">layer2 / dilation=2</text>
+<text x="105" y="229" text-anchor="middle" font-size="8" fill="#444">256ch · 64×64</text>
+
+<line x1="105" y1="243" x2="105" y2="256" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- L3 -->
+<rect x="16" y="258" width="179" height="45" rx="5" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="105" y="275" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">layer3 / dilation=4</text>
+<text x="105" y="289" text-anchor="middle" font-size="8" fill="#444">256ch · 64×64</text>
+
+<!-- Arrow L3 → ASPP -->
+<line x1="195" y1="280" x2="219" y2="280" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- ═══ ZONE 2: ASPP ═══ -->
+<rect x="216" y="52" width="210" height="300" rx="6" fill="none" stroke="#534AB7" stroke-width="1" stroke-dasharray="5,3"/>
+<text x="321" y="67" text-anchor="middle" font-size="9" font-weight="bold" fill="#534AB7">Atrous Spatial Pyramid Pooling</text>
+
+<!-- Input distribution line -->
+<path d="M224,99 V249" stroke="#555" stroke-width="1" fill="none"/>
+<line x1="224" y1="99" x2="232" y2="99" stroke="#555" stroke-width="1"/>
+<line x1="224" y1="133" x2="232" y2="133" stroke="#555" stroke-width="1"/>
+<line x1="224" y1="167" x2="232" y2="167" stroke="#555" stroke-width="1"/>
+<line x1="224" y1="201" x2="232" y2="201" stroke="#555" stroke-width="1"/>
+<line x1="224" y1="235" x2="232" y2="235" stroke="#555" stroke-width="1"/>
+
+<!-- Branch 1: Conv 1×1 (purple) -->
+<rect x="234" y="85" width="180" height="28" rx="4" fill="#ECEAF5" stroke="#534AB7" stroke-width="1.2"/>
+<text x="324" y="103" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">Conv 1×1 / 256ch</text>
+
+<!-- Branch 2: Atrous r=6 (purple) -->
+<rect x="234" y="119" width="180" height="28" rx="4" fill="#ECEAF5" stroke="#534AB7" stroke-width="1.2"/>
+<text x="324" y="137" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">Atrous rate=6 / 256ch</text>
+
+<!-- Branch 3: Atrous r=12 (purple) -->
+<rect x="234" y="153" width="180" height="28" rx="4" fill="#ECEAF5" stroke="#534AB7" stroke-width="1.2"/>
+<text x="324" y="171" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">Atrous rate=12 / 256ch</text>
+
+<!-- Branch 4: Atrous r=18 (purple) -->
+<rect x="234" y="187" width="180" height="28" rx="4" fill="#ECEAF5" stroke="#534AB7" stroke-width="1.2"/>
+<text x="324" y="205" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">Atrous rate=18 / 256ch</text>
+
+<!-- Branch 5: Global Avg Pool (amber) -->
+<rect x="234" y="221" width="180" height="28" rx="4" fill="#FDF2DB" stroke="#EF9F27" stroke-width="1.2"/>
+<text x="324" y="239" text-anchor="middle" font-size="8" font-weight="bold" fill="#333">Global Avg Pool / 256ch</text>
+
+<!-- Collecting bracket right -->
+<path d="M414,99 H418 V249 H414" stroke="#555" stroke-width="1" fill="none"/>
+
+<!-- Arrow bracket → Concat+Conv -->
+<line x1="418" y1="174" x2="418" y2="272" stroke="#555" stroke-width="1.2"/>
+<line x1="418" y1="272" x2="415" y2="272" stroke="#555" stroke-width="1.2"/>
+
+<!-- Concat+Conv (amber) -->
+<rect x="234" y="260" width="180" height="36" rx="5" fill="#FDF2DB" stroke="#EF9F27" stroke-width="1.5"/>
+<text x="324" y="276" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">Concat → Conv 1×1</text>
+<text x="324" y="289" text-anchor="middle" font-size="8" fill="#444">256ch · 64×64</text>
+
+<!-- Arrow ASPP → Decoder -->
+<line x1="414" y1="278" x2="437" y2="278" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- ═══ ZONE 3: DECODER ═══ -->
+<rect x="439" y="52" width="234" height="300" rx="6" fill="none" stroke="#D85A30" stroke-width="1" stroke-dasharray="5,3"/>
+<text x="556" y="67" text-anchor="middle" font-size="10" font-weight="bold" fill="#D85A30">Декодер</text>
+
+<!-- Proj (coral) -->
+<rect x="449" y="108" width="214" height="48" rx="5" fill="#F8E5DD" stroke="#D85A30" stroke-width="1.5"/>
+<text x="556" y="127" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">Proj 1×1</text>
+<text x="556" y="141" text-anchor="middle" font-size="8" fill="#444">low-level 128→48ch</text>
+
+<!-- Merge (coral) -->
+<rect x="449" y="196" width="214" height="52" rx="5" fill="#F8E5DD" stroke="#D85A30" stroke-width="1.5"/>
+<text x="556" y="213" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">Concat(ASPP+low)</text>
+<text x="556" y="227" text-anchor="middle" font-size="8" fill="#444">Conv×2 / 256ch</text>
+<text x="556" y="240" text-anchor="middle" font-size="8" fill="#444">upsample ×4</text>
+
+<!-- Arrow Proj→Merge -->
+<line x1="556" y1="156" x2="556" y2="194" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Arrow ASPP→Merge -->
+<path d="M437,278 H440 V222 H449" stroke="#555" stroke-width="1.2" fill="none" marker-end="url(#ah)"/>
+
+<!-- Head (green) -->
+<rect x="449" y="282" width="214" height="45" rx="5" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="556" y="300" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">Conv 1×1 → 6 классов</text>
+<text x="556" y="314" text-anchor="middle" font-size="8" fill="#444">Маска 6×512×512</text>
+
+<!-- Arrow Merge→Head -->
+<line x1="556" y1="248" x2="556" y2="280" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- ═══ LOW-LEVEL FEATURES ═══ -->
+<path d="M105,183 V370 H556 V329" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="6,3" fill="none" marker-end="url(#ahg)"/>
+<rect x="220" y="360" width="200" height="18" rx="3" fill="#fff" stroke="none"/>
+<text x="320" y="373" text-anchor="middle" font-size="8" fill="#1D9E75" font-style="italic">low-level features (128ch)</text>
+
+</svg>

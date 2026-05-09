@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 478" font-family="'Segoe UI',Arial,sans-serif">
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#555"/></marker>
+  <marker id="ahg" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10z" fill="#1D9E75"/></marker>
+</defs>
+
+<!-- Title -->
+<text x="340" y="22" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">U-Net (ResNet50-style encoder)</text>
+<text x="340" y="39" text-anchor="middle" font-size="12" fill="#666">37.5M параметров · 298.4 GFLOPs · mIoU 55.8%</text>
+
+<!-- ═══ ENCODER (left column) ═══ -->
+
+<!-- Enc1 -->
+<rect x="15" y="62" width="198" height="62" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="114" y="80" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">EncoderBlock 1</text>
+<text x="114" y="94" text-anchor="middle" font-size="8" fill="#444">ResBlock×2</text>
+<text x="114" y="108" text-anchor="middle" font-size="8" fill="#444">64ch · 256×256</text>
+
+<!-- ↓ -->
+<line x1="114" y1="124" x2="114" y2="143" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Enc2 -->
+<rect x="15" y="145" width="198" height="62" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="114" y="163" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">EncoderBlock 2</text>
+<text x="114" y="177" text-anchor="middle" font-size="8" fill="#444">ResBlock×2</text>
+<text x="114" y="191" text-anchor="middle" font-size="8" fill="#444">128ch · 128×128</text>
+
+<!-- ↓ -->
+<line x1="114" y1="207" x2="114" y2="226" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Enc3 -->
+<rect x="15" y="228" width="198" height="62" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="114" y="246" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">EncoderBlock 3</text>
+<text x="114" y="260" text-anchor="middle" font-size="8" fill="#444">ResBlock×2</text>
+<text x="114" y="274" text-anchor="middle" font-size="8" fill="#444">256ch · 64×64</text>
+
+<!-- ↓ -->
+<line x1="114" y1="290" x2="114" y2="309" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Enc4 -->
+<rect x="15" y="311" width="198" height="62" rx="6" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="114" y="329" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">EncoderBlock 4</text>
+<text x="114" y="343" text-anchor="middle" font-size="8" fill="#444">ResBlock×2</text>
+<text x="114" y="357" text-anchor="middle" font-size="8" fill="#444">512ch · 32×32</text>
+
+<!-- ═══ BOTTLENECK (center) ═══ -->
+
+<!-- Enc4 → Bottleneck path -->
+<path d="M114,373 V390 H193" stroke="#555" stroke-width="1.2" fill="none" marker-end="url(#ah)"/>
+
+<rect x="195" y="400" width="290" height="58" rx="6" fill="#ECEAF5" stroke="#534AB7" stroke-width="1.5"/>
+<text x="340" y="420" text-anchor="middle" font-size="10" font-weight="bold" fill="#333">Bottleneck</text>
+<text x="340" y="434" text-anchor="middle" font-size="8" fill="#444">ConvBNReLU×2</text>
+<text x="340" y="448" text-anchor="middle" font-size="8" fill="#444">1024ch · 16×16</text>
+
+<!-- Bottleneck → Dec4 path -->
+<path d="M485,400 H566 V375" stroke="#555" stroke-width="1.2" fill="none" marker-end="url(#ah)"/>
+
+<!-- ═══ DECODER (right column) ═══ -->
+
+<!-- Dec4 -->
+<rect x="467" y="311" width="198" height="62" rx="6" fill="#F8E5DD" stroke="#D85A30" stroke-width="1.5"/>
+<text x="566" y="327" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">DecoderBlock 4</text>
+<text x="566" y="340" text-anchor="middle" font-size="7.5" fill="#444">ConvTranspose + concat + Conv×2</text>
+<text x="566" y="354" text-anchor="middle" font-size="8" fill="#444">512ch · 32×32</text>
+
+<!-- ↑ Dec4→Dec3 -->
+<line x1="566" y1="311" x2="566" y2="292" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Dec3 -->
+<rect x="467" y="228" width="198" height="62" rx="6" fill="#F8E5DD" stroke="#D85A30" stroke-width="1.5"/>
+<text x="566" y="244" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">DecoderBlock 3</text>
+<text x="566" y="257" text-anchor="middle" font-size="7.5" fill="#444">ConvTranspose + concat + Conv×2</text>
+<text x="566" y="271" text-anchor="middle" font-size="8" fill="#444">256ch · 64×64</text>
+
+<!-- ↑ Dec3→Dec2 -->
+<line x1="566" y1="228" x2="566" y2="209" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Dec2 -->
+<rect x="467" y="145" width="198" height="62" rx="6" fill="#F8E5DD" stroke="#D85A30" stroke-width="1.5"/>
+<text x="566" y="161" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">DecoderBlock 2</text>
+<text x="566" y="174" text-anchor="middle" font-size="7.5" fill="#444">ConvTranspose + concat + Conv×2</text>
+<text x="566" y="188" text-anchor="middle" font-size="8" fill="#444">128ch · 128×128</text>
+
+<!-- ↑ Dec2→Dec1 -->
+<line x1="566" y1="145" x2="566" y2="126" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<!-- Dec1 -->
+<rect x="467" y="62" width="198" height="62" rx="6" fill="#F8E5DD" stroke="#D85A30" stroke-width="1.5"/>
+<text x="566" y="78" text-anchor="middle" font-size="9" font-weight="bold" fill="#333">DecoderBlock 1</text>
+<text x="566" y="91" text-anchor="middle" font-size="7.5" fill="#444">ConvTranspose + concat + Conv×2</text>
+<text x="566" y="105" text-anchor="middle" font-size="8" fill="#444">64ch · 256×256</text>
+
+<!-- Head + Output -->
+<path d="M566,62 V50 H537 V48" stroke="#555" stroke-width="1.2" fill="none" marker-end="url(#ah)"/>
+
+<rect x="485" y="16" width="90" height="30" rx="5" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="530" y="35" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">Conv 1×1 → 6</text>
+
+<line x1="575" y1="31" x2="588" y2="31" stroke="#555" stroke-width="1.2" marker-end="url(#ah)"/>
+
+<rect x="590" y="16" width="82" height="30" rx="5" fill="#DFF0EA" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="631" y="35" text-anchor="middle" font-size="8.5" font-weight="bold" fill="#333">6×512×512</text>
+
+<!-- ═══ SKIP CONNECTIONS ═══ -->
+
+<!-- Skip 1 -->
+<line x1="213" y1="93" x2="467" y2="93" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="6,3" marker-end="url(#ahg)"/>
+<text x="340" y="87" text-anchor="middle" font-size="7" fill="#1D9E75" font-style="italic">skip, concat</text>
+
+<!-- Skip 2 -->
+<line x1="213" y1="176" x2="467" y2="176" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="6,3" marker-end="url(#ahg)"/>
+<text x="340" y="170" text-anchor="middle" font-size="7" fill="#1D9E75" font-style="italic">skip, concat</text>
+
+<!-- Skip 3 -->
+<line x1="213" y1="259" x2="467" y2="259" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="6,3" marker-end="url(#ahg)"/>
+<text x="340" y="253" text-anchor="middle" font-size="7" fill="#1D9E75" font-style="italic">skip, concat</text>
+
+<!-- Skip 4 -->
+<line x1="213" y1="342" x2="467" y2="342" stroke="#1D9E75" stroke-width="1.2" stroke-dasharray="6,3" marker-end="url(#ahg)"/>
+<text x="340" y="336" text-anchor="middle" font-size="7" fill="#1D9E75" font-style="italic">skip, concat</text>
+
+</svg>
