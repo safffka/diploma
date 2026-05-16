@@ -34,3 +34,23 @@ python3 src/inference.py --model unet_pt --checkpoint experiments/unet_pt/best.p
 ## Воспроизведение
 
 pip install -r requirements.txt && python3 scripts/preprocess_real.py && python3 src/training/train.py --model unet_pt --dataset vaihingen --dataset_path data/processed --epochs 100 --save_dir experiments/unet_pt
+
+## Jupyter ноутбук
+
+Для интерактивного запуска используй ноутбук:
+
+```bash
+pip install jupyterlab
+jupyter lab notebooks/train_local.ipynb
+```
+
+Ноутбук содержит все этапы:
+1. Установка зависимостей
+2. Загрузка датасета (Kaggle)
+3. Предобработка
+4. Проверка всех 7 моделей
+5. Обучение (пропускает уже обученные модели)
+6. Оценка на тестовой выборке
+7. Проверка гипотез H1/H2/H3
+8. Графики кривых обучения
+9. Инференс на примере
