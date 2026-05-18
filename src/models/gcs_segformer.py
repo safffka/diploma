@@ -5,7 +5,7 @@ GCS-SegFormer: реализация на основе Lu et al., ADMA 2025.
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from src.models.segformer import MiTStage
+from src.models.mit_b2 import MiTB2Encoder
 
 
 # ─── GCSA ───────────────────────────────────────────────────
@@ -140,34 +140,20 @@ class GCSSegFormer(nn.Module):
     GCS-SegFormer: SegFormer + GCSA + SDI + Ghost Decoder.
     Lu et al., ADMA 2025. mIoU 93.25% on ISPRS Vaihingen.
     """
-    def __init__(self, num_classes=6, in_channels=3,
-                 embed_dims=None, depths=None, sr_ratios=None,
-                 embed_dim=128):
+    def __init__(self, num_classes=6, in_channels=3, embed_dim=128):
         super().__init__()
-        if embed_dims is None: embed_dims = [32, 64, 128, 192]
-        if depths     is None: depths     = [2, 2, 2, 2]
-        if sr_ratios  is None: sr_ratios  = [8, 4, 2, 1]
+        embed_dims = [64, 128, 320, 512]
 
-        # Encoder: 4 стадии MiT
-        self.stages = nn.ModuleList()
-        in_ch = in_channels
-        strides = [4, 2, 2, 2]
-        kernels = [7, 3, 3, 3]
-        for ed, d, sr, stride, ks in zip(embed_dims, depths, sr_ratios, strides, kernels):
-            self.stages.append(MiTStage(in_ch, ed,
-                                        patch_kernel=ks, patch_stride=stride,
-                                        patch_pad=ks//2, depth=d,
-                                        num_heads=max(1, ed//32),
-                                        sr_ratio=sr))
-            in_ch = ed
+        # Encoder: MiT-B2
+        self.encoder = MiTB2Encoder(in_channels=in_channels)
 
         # GCSA на стадиях 2 и 3 (глубокие признаки)
-        self.gcsa2 = GCSA(embed_dims[2])
-        self.gcsa3 = GCSA(embed_dims[3])
+        self.gcsa2 = GCSA(channels=320)
+        self.gcsa3 = GCSA(channels=512)
 
         # SDI: stage3→stage0, stage2→stage1
-        self.sdi_coarse = SDI(embed_dims[3], embed_dims[0], embed_dims[0])
-        self.sdi_fine   = SDI(embed_dims[2], embed_dims[1], embed_dims[1])
+        self.sdi_coarse = SDI(deep_ch=512, shallow_ch=64, out_ch=64)
+        self.sdi_fine   = SDI(deep_ch=320, shallow_ch=128, out_ch=128)
 
         # Ghost Decoder
         self.decoder = GhostDecoder(embed_dims, embed_dim=embed_dim,
@@ -175,10 +161,7 @@ class GCSSegFormer(nn.Module):
 
     def forward(self, x):
         H_in, W_in = x.shape[-2:]
-        f = []
-        for stage in self.stages:
-            x = stage(x)
-            f.append(x)
+        f = self.encoder(x)
 
         # GCSA
         f[2] = self.gcsa2(f[2])
@@ -191,3 +174,7 @@ class GCSSegFormer(nn.Module):
         out = self.decoder(f)
         return F.interpolate(out, size=(H_in, W_in),
                              mode='bilinear', align_corners=False)
+
+    def load_pretrained(self, weights_path: str):
+        self.encoder.load_pretrained(weights_path)
+        print(f'Loaded MiT-B2 pretrained weights from {weights_path}')
