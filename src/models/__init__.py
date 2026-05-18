@@ -10,6 +10,7 @@ from src.models.deeplab import DeepLabV3Plus
 from src.models.fcn import FCN
 from src.models.segformer import SegFormer
 from src.models.unet import UNet
+from src.models.gcs_segformer import GCSSegFormer
 from src.models.unet_pretrained import UNetPretrained
 
 __all__ = [
@@ -38,6 +39,8 @@ def get_model(
         return SegFormer(num_classes=num_classes, in_channels=in_channels)
     if key == "unet_pt":
         return UNetPretrained(num_classes=num_classes, pretrained=True)
+    if key == "gcs_segformer":
+        return GCSSegFormer(num_classes=num_classes)
     if key == "attention_pt":
         return AttentionUNetPretrained(num_classes=num_classes, pretrained=True)
     raise ValueError(

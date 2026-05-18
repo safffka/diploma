@@ -25,7 +25,7 @@ def parse_args() -> argparse.Namespace:
         "--model",
         type=str,
         required=True,
-        choices=["fcn", "unet", "deeplab", "attention", "segformer", "unet_pt", "attention_pt"],
+        choices=["fcn", "unet", "deeplab", "attention", "segformer", "unet_pt", "attention_pt", "gcs_segformer"],
     )
     p.add_argument(
         "--dataset",
